@@ -1,6 +1,6 @@
-'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
+import classNames from 'classnames'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BsBoxes, BsSearch } from 'react-icons/bs'
 import { FiMenu } from 'react-icons/fi'
@@ -15,43 +15,60 @@ const menus = [
   { name: 'Relatórios', link: '/report', icon: HiOutlineDocumentReport },
 ]
 
-export default function Sidebar() {
-  const [open, setOpen] = useState(true)
+type Props = {
+  collapsed: boolean
+  setCollapsed(collapsed: boolean): void
+}
 
+export default function Sidebar({ collapsed, setCollapsed }: Props) {
   return (
-    <div
-      className={`min-h-screen bg-red-400 
-             ${open ? 'w-72' : 'w-14'} mr-auto
-             rounded-r-xl px-3 text-gray-100 duration-300 hover:shadow-black`}
-    >
-      <div className="flex justify-end py-4">
-        <FiMenu
-          size={26}
-          className="cursor-pointer"
-          onClick={() => setOpen(!open)}
-        />
-      </div>
-      <div className="relative mt-8 flex flex-col gap-4">
-        {menus?.map((menu, i) => (
-          <Link
-            href={menu.link}
-            key={i}
-            className="flex items-center gap-3 rounded-xl p-2 text-sm
-                         font-medium hover:bg-red-500"
+    <div className={'z-20 rounded-r-xl bg-red-400 text-zinc-50'}>
+      <div className="flex h-full flex-col justify-between">
+        <div
+          className={classNames({
+            'flex items-center border-b border-b-red-500': true,
+            'justify-between p-4': !collapsed,
+            'justify-center py-4': collapsed,
+          })}
+        >
+          {!collapsed && (
+            <span className="whitespace-nowrap text-xl">RFlyD</span>
+          )}
+          <button
+            className={classNames({
+              'grid place-content-center': true, // position
+              'hover:bg-red-500': true, // colors
+              'h-10 w-10 rounded-full': true, // shape
+            })}
+            // 👇 set the collapsed state on click
+            onClick={() => setCollapsed(!collapsed)}
           >
-            <div>{React.createElement(menu?.icon, { size: 20 })}</div>
-            <div
-              style={{ transitionDelay: `${i + 1}00ms` }}
-              className={`whitespace-pre duration-500 
-                         ${
-                           !open && 'translate-x-28 overflow-hidden opacity-0'
-                         }`}
-            >
-              {menu?.name}
-            </div>
-          </Link>
-        ))}
+            <FiMenu size={26} />
+          </button>
+        </div>
+        <nav className="flex-grow">
+          <ul className="my-2 flex flex-col items-stretch gap-2">
+            {menus?.map((menu, i) => (
+              <Link
+                href={menu?.link}
+                key={i}
+                className={classNames({
+                  'flex gap-2 text-red-100 hover:bg-red-500': true,
+                  'transition-colors duration-300': true,
+                  'mx-3 gap-4 rounded-md p-2': !collapsed,
+                  'mx-3 h-10 w-10 rounded-full p-2': collapsed,
+                })}
+              >
+                <div className="items-center">
+                  {React.createElement(menu?.icon, { size: 24 })}
+                </div>{' '}
+                <span>{!collapsed && menu?.name}</span>
+              </Link>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   )
 }
+

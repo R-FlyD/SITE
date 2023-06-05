@@ -10,7 +10,12 @@ module.exports = {
       fontFamily: {
         sans: 'var(--font-roboto)',
       },
+      gridTemplateColumns: {
+        sidebar: '288px auto', // for sidebar layout
+        'sidebar-collapsed': '56px auto', // for collapsed sidebar layout
+      },
     },
   },
   plugins: [],
 }
+
