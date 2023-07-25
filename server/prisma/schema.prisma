@@ -9,33 +9,36 @@ datasource db {
 
 /// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
 model historic {
-  id                        Int                    @id @default(autoincrement())
   date                      DateTime               @db.Timestamptz(6)
   hall                      Int
   shelf                     Int
   position                  Int
+  id                        Int                    @id @default(autoincrement())
   product_identification_id Int
   product_identification    product_identification @relation(fields: [product_identification_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_identification_id")
 }
 
 model product {
-  id                     Int                      @id @default(autoincrement())
-  name                   String
-  type                   String
-  cost                   Decimal                  @db.Money
-  image                  String
-  description            String
-  product_identification product_identification[]
+  name        String
+  type        String
+  cost        Decimal @db.Money
+  image       String
+  description String
+  id          Int     @id @default(autoincrement())
 }
 
 /// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
 model product_identification {
-  id                Int        @id @default(autoincrement())
   cody_RFID         String     @db.VarChar(10)
   registration_date DateTime   @db.Timestamptz(6)
   valide_date       DateTime   @db.Timestamptz(6)
   checked           Boolean
+  id                Int        @id @default(autoincrement())
   product_id        Int
   historic          historic[]
-  product           product    @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_id")
+}
+
+model control {
+  id    Int     @id @default(autoincrement())
+  relay Boolean
 }
