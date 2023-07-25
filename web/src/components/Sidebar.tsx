@@ -71,4 +71,3 @@ export default function Sidebar({ collapsed, setCollapsed }: Props) {
     </div>
   )
 }
-

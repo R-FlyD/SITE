@@ -22,11 +22,13 @@ export default async function Control() {
 
   return (
     <div className="h-screen w-full">
+      {/* Header */}
       <div className="flex h-auto w-full flex-col justify-start px-6 text-start sm:px-24">
         <h1 className="xs:text-[40px] text-[30px] font-bold sm:text-[50px] md:text-[60px]">
           Controle
         </h1>
       </div>
+      {/* Content */}
       <div className="relative grid grid-cols-8 justify-between gap-4 px-8 py-3">
         {products.map((product) => {
           return (
@@ -36,9 +38,6 @@ export default async function Control() {
             >
               <Image src={Box} alt="Box Image" />
               <p className="py-4">{product.cody_RFID}</p>
-              {/* if(product.checked)
-              {<div className="flex h-4 w-4 rounded-full bg-green-600" />}
-              else{<div className="flex h-4 w-4 rounded-full bg-red-600" />} */}
               {product.checked ? (
                 <div className="flex h-4 w-4 rounded-full bg-green-600" />
               ) : (

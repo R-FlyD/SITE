@@ -31,22 +31,24 @@ export function MyForm() {
     <form onSubmit={handleCreatProduct}>
       <div className="grid grid-cols-2">
         <div>
-          {/* Nome do produto */}
-          <div>
-            <p className="mb-1 font-semibold text-red-500">Nome do produto:</p>
-            <input
-              type="text"
-              placeholder="Dell Inspiron"
-              className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 shadow-xl"
-              required
-            />
-          </div>
           {/* Tipo do produto */}
           <div>
             <p className="mb-1 font-semibold text-red-500">Tipo do produto:</p>
             <input
               type="text"
+              name="type"
               placeholder="Computador"
+              className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 shadow-xl"
+              required
+            />
+          </div>
+          {/* Nome do produto */}
+          <div>
+            <p className="mb-1 font-semibold text-red-500">Nome do produto:</p>
+            <input
+              type="text"
+              // name="name"
+              placeholder="Dell Inspiron"
               className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 shadow-xl"
               required
             />
@@ -71,6 +73,7 @@ export function MyForm() {
           <p className="mb-1 font-semibold text-red-500">RFID do produto:</p>
           <input
             type="text"
+            name="cody_RFID"
             placeholder="fb21fd3f"
             className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 shadow-xl"
             required
@@ -81,6 +84,7 @@ export function MyForm() {
           <p className="mb-1 font-semibold text-red-500">Preço do produto:</p>
           <input
             type="number"
+            name="cost"
             className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 text-gray-400 shadow-xl"
             required
           />
@@ -92,6 +96,7 @@ export function MyForm() {
           <p className="mb-1 font-semibold text-red-500">Data de entrada:</p>
           <input
             type="date"
+            // name="registration_date"
             className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 text-gray-400"
             required
           />
@@ -101,18 +106,20 @@ export function MyForm() {
           <p className="mb-1 font-semibold text-red-500">Validade:</p>
           <input
             type="date"
+            // name="valide_date"
             className="mb-4 w-56 rounded-xl border border-zinc-400 p-1.5 text-gray-400 shadow-xl"
             required
           />
         </div>
       </div>
-      {/* Localização do produto */}
+      {/* Localização do produto - tabela de historico */}
       <div>
         <p className="mb-1 font-semibold text-red-500">Localização:</p>
         <div className="grid grid-cols-3 justify-between">
           {/* Corredor */}
           <input
             type="text"
+            // name="hall"
             placeholder="Corredor: 1"
             className="mb-4 mr-4 w-56 rounded-xl border border-zinc-400 p-1.5 shadow-xl"
             size={20}
@@ -121,6 +128,7 @@ export function MyForm() {
           {/* Prateleira */}
           <input
             type="text"
+            // name="shelf"
             placeholder="Prateleira: 2"
             className="mb-4 mr-4 w-56 rounded-xl border border-zinc-400 p-1.5 shadow-xl"
             required
@@ -128,6 +136,7 @@ export function MyForm() {
           {/* Posição */}
           <input
             type="text"
+            // name="position"
             placeholder="Posição: 3"
             className="mb-4 rounded-xl border border-zinc-400 p-1.5"
             required

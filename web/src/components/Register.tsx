@@ -14,7 +14,7 @@ const Register = () => {
 
       {/* Informações do Produto */}
       <div className="container mx-auto my-auto">
-        <div className="my-4 flex rounded-3xl">
+        <div className="mt-4 flex rounded-3xl">
           {/* Caracteristicas do produto */}
           <div className="mx-10 w-4/5 rounded-3xl border border-zinc-200 bg-gray-100 px-10 py-11 shadow-2xl">
             <MyForm />
